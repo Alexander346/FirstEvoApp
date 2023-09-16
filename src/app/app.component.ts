@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FirstEvoApp';
+
+  items = [
+    { date: new Date(), number: 10 },
+    { date: new Date(), number: 20 },
+    { date: new Date(), number: 30 },
+  ];
 }
