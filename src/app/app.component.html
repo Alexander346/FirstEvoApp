@@ -1,5 +1,10 @@
-<div>
-    <h3>{{title}}</h3>
-</div>
-<app-component2></app-component2>
-
+<nav>
+    <ul>
+        <li><a routerLink="main">Основная</a></li>
+        <li><a routerLink="/">Главная</a></li>
+        <li><a routerLink="/page">Страница</a></li>
+        <li><a routerLink="/tabs">Вкладки</a></li>
+    </ul>
+  </nav>
+  
+  <router-outlet></router-outlet>
