@@ -1,0 +1,43 @@
+.notiflix-notify {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    max-width: 300px;
+    padding: 16px;
+    border-radius: 6px;
+    text-align: center;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  .notiflix-notify-success {
+    background-color: #bcd629;
+  }
+
+  .notiflix-notify-failure {
+    background-color: #dc3545;
+  }
+
+  .notiflix-notify-info {
+    background-color: #007bff;
+  }
+  
+  .notiflix-notify-enter {
+    opacity: 0;
+  }
+  .notiflix-notify-enter-active {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .notiflix-notify-exit {
+    opacity: 1;
+  }
+  .notiflix-notify-exit-active {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }

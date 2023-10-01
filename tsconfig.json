@@ -23,11 +23,15 @@
       "ES2022",
       "dom"
     ]
+    
   },
   "angularCompilerOptions": {
+    "types": ["d3-scale"],
+    "typeRoots": ["node_modules/@types"],
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   }
 }
+
