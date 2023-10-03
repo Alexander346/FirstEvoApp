@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ResponseService, Response } from './response.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
-export class AppComponent {
-  title = 'FirstEvoApp';
+export class AppComponent implements OnInit {
+  title(title: string) {
+    throw new Error('Method not implemented.');
+  }
+  Array!: Response[];
+
+  constructor(private responseService: ResponseService) {}
+
+  ngOnInit() {
+    this.Array = this.responseService.getArray();
+  }
 }
