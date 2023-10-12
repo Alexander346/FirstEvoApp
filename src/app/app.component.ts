@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'; // Импорт Router
 import { DataService } from './data.service';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    constructor(private router: Router, private dataService: DataService) {}
+
+    constructor(private router: Router, public dataService: DataService) {}
 
     fetchPosts() {
         this.dataService.fetchPosts().subscribe(response => {
