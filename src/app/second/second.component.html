@@ -1,0 +1,7 @@
+<div class="container" *ngIf="post">
+    <h2 class="card">Данные загружены:</h2>
+    <pre>{{ post | json }}</pre>
+  </div>
+  <div class="container" *ngIf="!post">
+    <h2 class="card">Данные не загружены.</h2>
+  </div>
