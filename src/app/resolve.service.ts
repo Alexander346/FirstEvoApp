@@ -1,23 +1,15 @@
-import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { DataService } from './data.service';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { DataService } from './data.service';
+import { Injectable } from '@angular/core';
 
-@Injectable()
-export class DataResolver implements Resolve<any> {
-  constructor(private dataService: DataService) {}
+@Injectable({
+    providedIn: 'root'
+})
+export class ResolveService implements Resolve<any> {
+    constructor(private dataService: DataService) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<any> {
-    const id = route.paramMap.get('id');
-    if (id) {
-      return this.dataService.getDataById(+id).pipe(
-        catchError(error => {
-          console.error('Error occurred while fetching data:', error);
-          return of(null); // Return null or a default value in case of an error
-        })
-      );
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
+        return this.dataService.fetchPosts();
     }
-    return of(null); // Return null if id is null
-  }
 }

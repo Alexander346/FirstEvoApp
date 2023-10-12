@@ -1,2 +1,14 @@
-<button [routerLink]="['/second-component', 1]">Go to Second Component</button>
-<router-outlet></router-outlet>
+<div class="container">
+  <h1>Посты</h1>
+  <div class="buttons">
+    <button class="btn" class="btn" class="btn" (click)="fetchPosts()">Принять пост</button>
+    <button class="btn" (click)="fetchComments()">Получить комментарии</button>
+    <button class="btn" (click)="createPost()">Создать пост</button>
+    <button class="btn" (click)="getWithErrorHandling()">Обработка ошибок</button>
+    <button class="btn" (click)="getWithHeaders()"> get заголовками</button>
+    <button class="btn" (click)="deletePost()">Удалить пост</button>
+    <a routerLink="/second">SecondComponent</a>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

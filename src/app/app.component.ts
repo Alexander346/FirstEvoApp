@@ -1,94 +1,57 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from './data.service';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-root',
-  template: `
-    <button (click)="getPost()">Get Post</button>
-    <button (click)="getComments()">Get Comments</button>
-    <button (click)="createPost()">Create Post</button>
-    <button (click)="getWithErrorHandling()">Get with Error Handling</button>
-    <button (click)="getWithHeaders()">Get with Headers</button>
-    <button (click)="deletePost()">Delete Post</button>
-    <button (click)="navigateToSecondComponent()">Go to Second Component</button>
-  `,
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private dataService: DataService, private router: Router) {}
+    constructor(private router: Router, private dataService: DataService) {}
 
-  getPost() {
-    this.dataService.getPost().subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (error) => {
-        this.handleError(error);
-      }
-    });
-  }
+    fetchPosts() {
+        this.dataService.fetchPosts().subscribe(response => {
+            console.log('Посты:', response);
+        });
+    }
 
-  getComments() {
-    this.dataService.getComments().subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (error) => {
-        this.handleError(error);
-      }
-    });
-  }
+    fetchComments() {
+        this.dataService.fetchComments(1).subscribe(response => {
+            console.log('Комментарии:', response);
+        });
+    }
 
-  createPost() {
-    this.dataService.createPost().subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (error) => {
-        this.handleError(error);
-      }
-    });
-  }
+    createPost() {
+        this.dataService.createPost().subscribe(response => {
+            console.log('Пост создан:', response);
+        });
+    }
 
-  getWithErrorHandling() {
-    this.dataService.getWithErrorHandling().subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (error) => {
-        this.handleError(error);
-      }
-    });
-  }
+    getWithErrorHandling() {
+        this.dataService.getWithErrorHandling().subscribe({
+            next: (response) => {
+                console.log('Ошибки проверенны:', response);
+            },
+            error: (error) => {
+                console.error('Ошибка: ', error);
+            },
+        });
+    }
 
-  getWithHeaders() {
-    this.dataService.getWithHeaders().subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (error) => {
-        this.handleError(error);
-      }
-    });
-  }
+    getWithHeaders() {
+        this.dataService.getWithHeaders().subscribe(response => {
+            console.log('Результат:', response);
+        });
+    }
 
-  deletePost() {
-    this.dataService.deletePost().subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (error) => {
-        this.handleError(error);
-      }
-    });
-  }
+    deletePost() {
+        this.dataService.deletePost().subscribe(response => {
+            console.log('Пост удален:', response);
+        });
+    }
 
-  navigateToSecondComponent() {
-    this.router.navigate(['/second-component', 1]);
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    console.error('An error occurred:', error);
-  }
+    NavigationToSecondComponent() {
+        this.router.navigate(['/second']);
+    }
 }

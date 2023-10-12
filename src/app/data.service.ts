@@ -1,41 +1,37 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class DataService {
+    private Url = 'https://jsonplaceholder.typicode.com/posts/1';
 
-  constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {}
 
-  getPost(): Observable<any> {
-    return this.http.get('https://jsonplaceholder.typicode.com/posts');
-  }
+    fetchPosts(): Observable<any> {
+        return this.http.get('https://jsonplaceholder.typicode.com/posts');
+    }
 
-  getComments(): Observable<any> {
-    let params = new HttpParams().set('postId', '1');
-    return this.http.get('https://jsonplaceholder.typicode.com/comments', { params });
-  }
+    fetchComments(postId: number): Observable<any> {
+        return this.http.get('https://jsonplaceholder.typicode.com/comments', { params: { postId: postId.toString() } });
+    }
 
-  createPost(): Observable<any> {
-    return this.http.post('https://jsonplaceholder.typicode.com/posts', {});
-  }
+    createPost(): Observable<any> {
+        return this.http.post('https://jsonplaceholder.typicode.com/posts', {});
+    }
 
-  getWithErrorHandling(): Observable<any> {
-    return this.http.get('https://jsonplaceholder.typicode.com/posts/1');
-  }
+    getWithErrorHandling(): Observable<any> {
+        return this.http.get('https://jsonplaceholder.typicode.com/post').pipe();
+    }
 
-  getWithHeaders(): Observable<string> {
-    let headers = new HttpHeaders().set('X-Test', '1');
-    return this.http.get('https://jsonplaceholder.typicode.com/posts', { headers, responseType: 'text' });
-  }
+    getWithHeaders(): Observable<any> {
+        const headers = { 'X-Test': '1' };
+        return this.http.get('https://jsonplaceholder.typicode.com/posts', { headers, responseType: 'text' });
+    }
 
-  deletePost(): Observable<any> {
-    return this.http.delete('https://jsonplaceholder.typicode.com/posts/1');
-  }
-
-  getDataById(id: number): Observable<any> {
-    return this.http.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
-  }
+    deletePost(): Observable<any> {
+        return this.http.delete('https://jsonplaceholder.typicode.com/posts/1');
+    }
 }
